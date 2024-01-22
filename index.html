@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,6 +13,7 @@
 
     <title>Hello, world!</title>
   </head>
+
   <body>
 
     <div class="black-bg">
@@ -38,14 +40,7 @@
         <li class="list-group-item">And a fifth one</li>
     </ul>
 
-    <p class="hello">안녕</p>
-    <p class="hello">안녕</p>
-    <p class="hello">안녕</p>
-    <button id="test-btn">토글 버튼</button>
-    <button id="fadeOut-btn2">fadeOut 버튼</button>
-    <button id="slideUp-btn2">slideuUp 버튼</button>
-
-    <button id="modal-btn">로그인</button>
+    <button id="login">로그인</button>
 
 
 
@@ -55,53 +50,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     <script>
-        document.querySelector('.navbar-toggler').addEventListener('click', function() {
-            // document.querySelector('.list-group').classList.toggle('show');
-            $('.list-group').toggleClass('show');
+        $('#login').on('click', function() {
+            // document.querySelector('.black-bg').classList.add('show-modal')
+            $('.black-bg').addClass('show-modal');
+            // $('.black-bg').toggle('show-modal');
         });
-
-        document.querySelector('.hello').innerHTML = '바보';
-        
-        // $ = document.querySelector or querySelectorAll
-        $('.hello').html('멍청이');
-        $('.hello').css('color', 'red');
-        $('.hello').addClass('show');
-        $('.hello').removeClass('show');
-
-        // jquery 쓰는 이유 -> 모든 내용 한번에 바꿀 수 있음
-        // document.querySelectorAll('.hello')[0] = '바보';
-        // document.querySelectorAll('.hello')[1] = '바보';
-        // document.querySelectorAll('.hello')[2] = '바보';
-        $('.hello').html('바보');   //jquery 썼으면 뒤에도 jquery로 쓰자 .innerHtml 이런거 안된다
-
-        // jquery로 eventlistener 코드 길이 줄일 수 있음
-        document.querySelector('#test-btn').addEventListener('click', function() {
-
-        });
-
-        $('#test-btn').on('click', function() {
-            $('.hello').toggle('show')
-        });
-
-        // 간단한 UI용 애니메이션 추가하기 편함
-        $('#fadeOut-btn2').on('click', function() {
-            $('.hello').fadeOut();
-        })
-
-        $('#slideUp-btn2').on('click', function() {
-            $('.hello').slideUp();
-        })
-
-
-        // 과제 : 로그인 버튼 누르면 모달창 띄우고 닫기 버튼 누르면 모달창 닫기
-        $('#modal-btn').on('click', function() {
-            $('.black-bg').toggle('show-modal');
-        })
 
         $('#close').on('click', function() {
-            $('.black-bg').toggle('show-modal');
-        })
-
+            // document.querySelector('.black-bg').classList.remove('show-modal')
+            $('.black-bg').removeClass('show-modal');
+            // $('.black-bg').toggle('show-modal');
+        });
 
         
     </script>
