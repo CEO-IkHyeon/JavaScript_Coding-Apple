@@ -41,27 +41,27 @@
     </ul>
 
     <button id="login">로그인</button>
-
-
-
-
     
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     <script>
+        // 애니메이션 추가 방법1 : jquery 활용 -> 성능상 비추 -> css로 짜라
         $('#login').on('click', function() {
-            // document.querySelector('.black-bg').classList.add('show-modal')
-            $('.black-bg').addClass('show-modal');
-            // $('.black-bg').toggle('show-modal');
+            $('.black-bg').fadeIn();
         });
 
         $('#close').on('click', function() {
-            // document.querySelector('.black-bg').classList.remove('show-modal')
-            $('.black-bg').removeClass('show-modal');
-            // $('.black-bg').toggle('show-modal');
+            $('.black-bg').fadeOut();
         });
 
+        // 애니메이션 추가 방법2 : css로 
+        $('#login').on('click', function() {
+            $('.black-bg').addClass('show-modal')
+        });
+
+        $('#close').on('click', function() {
+            $('.black-bg').removeClass('show-modal');
+        });
         
     </script>
     
