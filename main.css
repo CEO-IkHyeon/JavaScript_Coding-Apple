@@ -5,6 +5,7 @@
     border-radius: 5px;
     display: none;
 }
+
 .list-group {
     display: none;
 }
@@ -18,14 +19,13 @@
 
 .black-bg{
     width: 100%;
-    height: 100%;
+    height: 0%;
     position: fixed;
     background: rgba(0,0,0,0.5);
     z-index: 5;
     padding: 30px;
     visibility: hidden;
-    opacity: 0;
-    transition: all 1s;
+    transition: all 1.5s;
 }
 
 .white-bg{
@@ -36,6 +36,6 @@
 }
 
 .show-modal {
-    opacity: 1;
+    height: 100%;
     visibility: visible;
 }

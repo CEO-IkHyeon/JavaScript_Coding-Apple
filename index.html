@@ -32,7 +32,7 @@
         </div>
     </nav> 
 
-    <ul class="list-group" id="test1">
+    <ul class="list-group">
         <li class="list-group-item">An item</li>
         <li class="list-group-item">A second item</li>
         <li class="list-group-item">A third item</li>
@@ -46,13 +46,13 @@
 
     <script>
         // 애니메이션 추가 방법1 : jquery 활용 -> 성능상 비추 -> css로 짜라
-        $('#login').on('click', function() {
-            $('.black-bg').fadeIn();
-        });
+        // $('#login').on('click', function() {
+        //     $('.black-bg').fadeIn();
+        // });
 
-        $('#close').on('click', function() {
-            $('.black-bg').fadeOut();
-        });
+        // $('#close').on('click', function() {
+        //     $('.black-bg').fadeOut();
+        // });
 
         // 애니메이션 추가 방법2 : css로 
         $('#login').on('click', function() {
@@ -63,6 +63,17 @@
             $('.black-bg').removeClass('show-modal');
         });
         
+        
+
+
+        // menu 목록 보여주기
+        $('.navbar-toggler').on('click', function() {
+            $('.list-group').toggle('show');
+        });
+
+    
+
+
     </script>
     
   </body>
