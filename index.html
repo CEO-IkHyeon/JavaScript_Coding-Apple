@@ -3,23 +3,38 @@
     <head>
         <meta charset="UTF-8">
         <title>Document</title>
+        <link rel="stylesheet" href="main.css">
     </head>
     <body>
-    
-        <h1 id="hello">안녕하세요</h1>
-        <h1 id="JS">JS 초보에요</h1>
+        
+        <div class="alert-box" id="alert">
+            <p id="title">알림창임</p>
+            <button id="close">닫기</button>
+        </div>
+
+        <button onclick="showAlertBox('아이디 입력하세요')">열기1</button>
+        <button onclick="showAlertBox('비밀번호 입력하세요')">열기2</button>
+
+        
 
 
-        <script>
-            document.getElementById('hello').innerHTML = "안녕"; 
-            document.getElementById('hello').style.fontSize = "16px";
-            // document.getElementById('hello').style.color = "red";
-            
-            document.getElementById('JS').innerHTML = "JS 고수에요";
+        <script>   
+            document.getElementById('close').addEventListener('mouseover', function() {
+                document.getElementById('alert').style.display = 'none';
+            });
+
+
+
+            function showAlertBox(text) {
+                document.getElementById('title').innerHTML = text;
+                document.getElementById('alert').style.display = 'block';
+            }  
+              
+            function closeAlertBox(id) {
+                document.getElementById(id).style.display = 'none';
+            }
 
         </script>
-
-
 
     </body>
 </html>
