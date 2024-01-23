@@ -40,19 +40,39 @@
     <script>
         // 전송버튼 누르면 -> input에 입력한 값이 공백이면 -> 알림창 띄우기 alert('안녕하세요')
         $('#send').on('click', function(e) {
-            if (document.getElementById('email').value === '' && document.getElementById('password').value === '') {
+            var userEmailInput = document.getElementById('email').value;
+            var userPwInput = document.getElementById('password').value;
+
+            if (userEmailInput === '' && userPwInput === '') {
                 e.preventDefault();
                 alert('아이디와 비밀번호를 입력하세요!');
-            } else if (document.getElementById('email').value === '')  {
+            } 
+
+            if (document.getElementById('email').value === '')  {
                 e.preventDefault();
                 alert('아이디를 입력하세요!');
-            } else if (document.getElementById('password').value === '') {
+            }
+
+            if (userPwInput === '') {
                 e.preventDefault();
                 alert('비밀번호를 입력하세요!');
-            } else if (document.getElementById('password').value.length < 6) {
+            }
+
+            if (userPwInput.length < 6) {
                 e.preventDefault();
                 alert('비밀번호가 6자 미만입니다.\n더 길게 입력하세요!');
             }
+
+            if (!(/\S+@\S+\.\S+/.test(userEmailInput))) {
+                e.preventDefault();
+                alert('이메일 형식 아님');
+            }
+
+            if (!(/[A-Z]/.test(userPwInput))) {
+                e.preventDefault();
+                alert('비번에 영어 대문자가 적어도 1개 있어야 함');
+            }
+
         });
 
         document.getElementById('password').addEventListener('input', function() {
@@ -93,6 +113,8 @@
         <button id="login" class="btn btn-danger">로그인</button>
 
     </div>
+
+    
 
     <div class="alert alert-danger">
         <span id="num">5</span>초 이내 구매시 사은품 증정!
