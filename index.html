@@ -38,6 +38,28 @@
 
     
     <script>
+        //검은배경 눌러서 모달창 닫기 -> 이렇게 짜면 다른데 눌러도 닫김(이벤트 버블링 땜시)
+        // $('.black-bg').on('click', function() {
+        //     $('.black-bg').removeClass('show-modal')
+        // });
+
+        // 이벤트 버블링 막는 유용한 함수들
+        // 이벤트 리스너의 콜백 함수에 e 넣기
+        $('.black-bg').on('click', function(e) {
+            // e.target;               // 유저가 실제로 누른거
+            // //console.log(e.target);
+            // e.currentTarget;        // eventlistener가 달린 곳 = this
+            // console.log(this);
+            // e.preventDefault();     // 기본 동작 막아주세요 -> 여기선 click 막아주세요
+            // e.stopPropagation();    // 내 상위 요소로 이벤트 버블링 막아줌
+
+            // 내가 실제로 누른게 까만 배경이면 모달창 닫아라
+            if (e.target == e.currentTarget) { // e.target == document.querySelector('.black-bg')도 가능
+                $('.black-bg').removeClass('show-modal');
+            }
+        });
+
+
         // 전송버튼 누르면 -> input에 입력한 값이 공백이면 -> 알림창 띄우기 alert('안녕하세요')
         $('#send').on('click', function(e) {
             var userEmailInput = document.getElementById('email').value;
