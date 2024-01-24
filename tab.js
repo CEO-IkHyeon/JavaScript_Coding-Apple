@@ -24,3 +24,5 @@ function openTab(i) {
     tabContent[i].classList.add('show');
 }
 
+
+
