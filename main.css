@@ -85,6 +85,7 @@
 
 .navbar-brand {
     font-size: 30px;
+    transition: all 0.5s;
 }
 
 .above-100px {
