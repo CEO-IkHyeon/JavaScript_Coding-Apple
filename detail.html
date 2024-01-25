@@ -50,18 +50,39 @@
         .show {
           display: block;
         }
+		.form-select {
+			transition: all 0.7s;
+		}
+		.form-hide {
+			display: none;
+		}
       </style>
 
   </head>
 
   <body>
-    <div class="container mt-5">
+	<div class="container mt-5">
         <div class="container mt-3">
           <div class="card p-3">
             <span class="car-title">상품명</span>  
             <span class="car-price">가격</span>
           </div>
         </div>
+    
+
+        <form class="container my-5 form-group">
+          	<p>상품선택</p>
+          	<select class="form-select mt-2">
+            	<option data-id="0">모자</option>
+            	<option class="shirt">셔츠</option>
+          	</select>
+
+			<select class="form-select mt-2 form-hide">
+            	<option>95</option>
+            	<option>100</option>	
+            	<option>105</option>
+          	</select>
+      	</form>
 
         <ul class="list">
             <li class="tab-button orange" data-id="0">Products</li>
@@ -87,6 +108,8 @@
           <p>니 정보일까요. YourPage</p>
         </div>
     </div> 
+
+    
 
     <script src="tab.js"></script>
     

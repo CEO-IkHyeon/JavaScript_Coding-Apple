@@ -25,4 +25,15 @@ function openTab(i) {
 }
 
 
+var formSelect = $('.form-select');
+formSelect.eq(0).on('input', function() {
+    if (this.value == '셔츠') { // this : 현재 이벤트리스너가 달린 곳
+        formSelect.eq(1).removeClass('form-hide');
+    } else {
+        formSelect.eq(1).addClass('form-hide');
+    }
+    
+})
+
+
 
