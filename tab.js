@@ -29,11 +29,24 @@ var formSelect = $('.form-select');
 formSelect.eq(0).on('input', function() {
     if (this.value == '셔츠') { // this : 현재 이벤트리스너가 달린 곳
         formSelect.eq(1).removeClass('form-hide');
+        
+        var shirts = `<option>95</option>
+        <option>100</option>`;
+        formSelect.eq(1).html(shirts);
+
+    } else if (this.value == '바지') {
+        formSelect.eq(1).removeClass('form-hide');
+
+        var pants = `<option>28</option>
+        <option>30</option>`;
+        formSelect.eq(1).html(pants);
+
     } else {
         formSelect.eq(1).addClass('form-hide');
     }
-    
-})
+});
+
+
 
 
 
