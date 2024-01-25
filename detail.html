@@ -143,6 +143,49 @@
       document.querySelector('.car-title').innerHTML = car2.name;
       document.querySelector('.car-price').innerHTML = car2.price[1];
 
+      // Q1
+      var 출석부 = ['흥민', '영희', '철수', '재석'];
+
+      function 이름찾기(이름) {
+        출석부.forEach(function(data) {
+          if (data == 이름) {
+            console.log('있어요');
+            return;
+          }
+        });
+        
+        return;
+      }
+
+      // Q2
+      for (var i = 2; i < 10; i++) {
+        for (var j = 1; j < 10; j++) {
+          //console.log(i*j);
+        }
+      }
+
+      // Q3
+      function 함수(array, score) {
+        var sum = 0;
+        array.forEach(function(data) {
+          sum += data;
+        });
+        var avg = sum / array.length;
+        var diff = (avg - score);
+        if (diff > 0) {
+          console.log(`평균보다 ${diff}점이 떨어졌네요 재수추천`);
+        } else if (diff < 0) {
+          console.log(`평균보다 ${-diff}점이 올랐네요`);
+        } else {
+          console.log(`평균 ${avg}점이랑 똑같네요 발전이 없노ㅋㅋ`);
+        }
+
+      }
+      함수([10, 20, 30, 40, 50], 40);
+      함수([40, 40, 40], 20);
+      함수([10, 20, 30, 40, 50], 30);
+      
+
     </script>
   </body>
 </html>
