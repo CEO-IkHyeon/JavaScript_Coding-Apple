@@ -19,8 +19,6 @@
     <div class="container">
       <div class="row">
 
-          
-    
       </div>
     </div> 
 
@@ -31,6 +29,7 @@
           <img src="https://via.placeholder.com/600" class="w-100">
           <h5>${item.title}</h5>
           <p>가격 : ${item.price}</p>
+          <button class="buy">구매</button>
         </div>`;
         
         $(`.${className}`).append(html);
@@ -44,36 +43,76 @@
       ];
       itemCardList('row', products);
       
-      /* array 정렬하는 법 - sort() : 원본 변형 O */
-      var array = [7,3,5,2,40];
-      array.sort(); // 문자 정렬이라 40이 5보다 앞에 나옴
-      console.log(array);
+      localStorage.setItem('이름', '조익현');
+      console.log(localStorage.getItem('이름'));
+      localStorage.removeItem('이름');
+      
+      // localStorage는 문자/숫자만 저장 가능
+      // array, object를 저장하고 싶으면 json으로 변경한 후 저장하면 된다
+      var arr = [1,2,3];
+      var jsonArr = JSON.stringify(arr);
+      localStorage.setItem('num', jsonArr);
+      // 이렇게 꺼내도 이건 array가 아니라 문자임 
+      // json -> array로 바꾸자
+      var output = localStorage.getItem('num');
+      console.log(output);
+      console.log(JSON.parse(output[1]));
 
-      array.sort(function(a, b) { // 숫자 오름차순으로 정렬
-        return b-a;
-      })
-      console.log(array);
 
-      var array2 = ['a', 'b', 'c'];
-      array2.sort();
-      console.log(array2);
-      array2.sort(function(a, b) {
-        var desc = a < b ? 1 : -1;
-        return desc;
-      })
-      console.log(array2)
+      // sessionStorage 사용법도 localStorage와 똑같음
+      // 대신 session은 브라우저 닫으면 날라감 ㅋㅋ
 
-      /* array 필터링 - filter() : 원본 변형 X */
-      var filteredArray = array.filter(function(a) {
-        return a < 4
-      })
-      console.log(filteredArray);
+      //localStorage 데이터 수정하려면 꺼내서 수정하고 다시 저장
+      
+      /* 숙제! 장바구니 구현 저장할 때 array로 저장
+      계속 이 cart의 array에 누적해서 저장*/
+      // 팁 1. 내 형제요소(sibling) 찾는법
+      // 팁 2. localStorage가 비어있을 때(setItem()) / 뭔가 있을 때(getItem() -> 수정 -> setItem())
+      // $('.buy').click(function(e) {
+      //   var cart = localStorage.getItem('cart');
+      //   // '구매'버튼으로부터 item title 가져오는 방법
+      //   var itemName = this.previousSibling.previousSibling.previousSibling.previousSibling.innerText;
+      //   var cartItem = [];
 
-      /* array 자료 전부 변형 - map() : 원본 변형 X*/
-      var mapArray = array.map(function(a) {
-        return a * 4
+      //   if (cart == null) { // 장바구니 비어있는 경우
+      //     cartItem.push(itemName);
+      //   } else {            // 장바구니 안 비어있는 경우
+      //     cartItem = JSON.parse(localStorage.getItem('cart'));
+      //     cartItem.push(itemName);
+      //   }
+
+      //   localStorage.setItem('cart', JSON.stringify(cartItem));
+        
+      // })
+
+      $('.buy').click(function(e) {
+        var cart = localStorage.getItem('cart');
+        var title = $(e.target).siblings('h5').text();
+        var item = [{name: title, count:1}]
+
+        if (cart == null) { // 장바구니 비어있는 경우
+          localStorage.setItem('cart', JSON.stringify(item));
+
+        } else {            // 장바구니 안 비어있는 경우
+          var cartList = JSON.parse(localStorage.getItem('cart'));
+          var isNewInCart = true;
+
+          cartList.forEach((data) => {
+            if (data['name'] == title) { //cart에 해당 item 있는 경우 -> count 개수만 눌려준다
+              data['count']++;
+              isNewInCart = false;
+            }
+          })
+
+          if (isNewInCart) {  // cart에 해당 item 없는 경우
+            var newItem = {name:title, count:1};
+            cartList.push(newItem);
+          }
+          localStorage.setItem('cart', JSON.stringify(cartList));
+        }
+
+        
       })
-      console.log(mapArray);
 
     </script>
 
@@ -88,6 +127,9 @@
       <button class="btn btn-danger" id="more">더보기</button>
     </div>
 
+    <div class="container">
+      <button class="btn btn-info" onclick="location.href='cart.html';">장바구니 ㄱㄱ </button>
+    </div>
 
     <script>
       var btnCount = 0;
@@ -127,9 +169,12 @@
 
       $('#filter_under_60000').click(function() {
 
-        var filteredItems = products.filter(function(a) {
-          return a.price <= 60000;
-        })
+        // var filteredItems = products.filter(function(a) {
+        //   return a.price <= 60000;
+        // })
+
+        var filteredItems = products.filter((a) => a.price <= 60000);
+
         $('.row').html('');
         itemCardList('row', filteredItems);
       })
