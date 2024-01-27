@@ -36,59 +36,103 @@
         $(`.${className}`).append(html);
         }) 
       }
-
-      // function itemCardOne(className, data) {
-      //   var html = `<div class="col-sm-4"> 
-      //     <img src="https://via.placeholder.com/600" class="w-100">
-      //     <h5>${data.title}</h5>
-      //     <p>가격 : ${data.price}</p>
-      //   </div>`;
-        
-      //   $(`.${className}`).append(html);
-      // }
-
+    
       var products = [
         { id : 0, price : 70000, title : 'Blossom Dress' },
         { id : 1, price : 50000, title : 'Springfield Shirt' },
         { id : 2, price : 60000, title : 'Black Monastery' }
       ];
-
-      // products.forEach((data)=> {
-      //   var html = `<div class="col-sm-4"> 
-      //     <img src="https://via.placeholder.com/600" class="w-100">
-      //     <h5>${data.title}</h5>
-      //     <p>가격 : ${data.price}</p>
-      //   </div>`;
-        
-      //   $('.row').append(html);
-      // })
-
-      // products.forEach((data)=> {
-      //   itemCardOne('row', data);
-      // })
-
       itemCardList('row', products);
       
+      /* array 정렬하는 법 - sort() : 원본 변형 O */
+      var array = [7,3,5,2,40];
+      array.sort(); // 문자 정렬이라 40이 5보다 앞에 나옴
+      console.log(array);
+
+      array.sort(function(a, b) { // 숫자 오름차순으로 정렬
+        return b-a;
+      })
+      console.log(array);
+
+      var array2 = ['a', 'b', 'c'];
+      array2.sort();
+      console.log(array2);
+      array2.sort(function(a, b) {
+        var desc = a < b ? 1 : -1;
+        return desc;
+      })
+      console.log(array2)
+
+      /* array 필터링 - filter() : 원본 변형 X */
+      var filteredArray = array.filter(function(a) {
+        return a < 4
+      })
+      console.log(filteredArray);
+
+      /* array 자료 전부 변형 - map() : 원본 변형 X*/
+      var mapArray = array.map(function(a) {
+        return a * 4
+      })
+      console.log(mapArray);
+
     </script>
+
+    <div class="container">
+      <button class="btn btn-primary" id="sort_price">가격순 정렬</button>
+      <button class="btn btn-primary" id="sort_name_desc">상품명 다나가순 정렬</button>
+      <button class="btn btn-primary" id="filter_under_60000">6만원 이하 상품 보기</button>
+      
+    </div>
 
     <div class="container">
       <button class="btn btn-danger" id="more">더보기</button>
     </div>
 
+
     <script>
       var btnCount = 0;
-      // 더보기 버튼 눌렀을 때 ajax 요청으로 상품 더 보여주기
+
       $('#more').click(function() {
         btnCount++;
         $.get(`https://codingapple1.github.io/js/more${btnCount}.json`)
         .done((data) => {
           itemCardList('row', data);
         })
-        
-      // 더보기 버튼 2번 눌리면 사라지게 하기
-      if (btnCount >= 2) $('#more').css('display', 'none');
+
+        if (btnCount >= 2) $('#more').css('display', 'none');
       })
+
+      $('#sort_price').click(function() {
+        // row 안에 있는거 다 지우고
+        $('.row').html('');
         
+        // 가격 순으로 정렬(오름차순)하고
+        products.sort(function(a, b){
+          return a.price - b.price;
+        })
+
+        // 다시 띄우기
+        itemCardList('row', products);
+      })
+      
+      $('#sort_name_desc').click(function() {
+        products.sort(function(a, b) {
+          var desc = a.title < b.title ? 1 : -1;
+          return desc;
+        })
+
+        $('.row').html('');
+        itemCardList('row', products);
+      })
+
+      $('#filter_under_60000').click(function() {
+
+        var filteredItems = products.filter(function(a) {
+          return a.price <= 60000;
+        })
+        $('.row').html('');
+        itemCardList('row', filteredItems);
+      })
       
     
 
