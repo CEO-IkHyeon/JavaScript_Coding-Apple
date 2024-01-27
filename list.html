@@ -98,16 +98,20 @@
           var isNewInCart = true;
 
           cartList.forEach((data) => {
-            if (data['name'] == title) { //cart에 해당 item 있는 경우 -> count 개수만 눌려준다
-              data['count']++;
+            //cart에 해당 item 있는 경우 -> count 개수만 눌려준다
+            if (data['name'] == title) { 
+              data['count']++;  // 개수 하나 추가
               isNewInCart = false;
             }
           })
 
-          if (isNewInCart) {  // cart에 해당 item 없는 경우
+          // cart에 해당 item 없는 경우
+          if (isNewInCart) {  
             var newItem = {name:title, count:1};
             cartList.push(newItem);
           }
+
+          // cart 다시 update
           localStorage.setItem('cart', JSON.stringify(cartList));
         }
 
