@@ -64,11 +64,29 @@
             cardBodyH5[i].innerHTML = products[i].title;
             cardBodyP[i].innerHTML = '가격 : ' + products[i].price;
         }
-
-        var a = '안뇽';
-        console.log(`문자${a}문자`); // '' 홑따옴표 아님, 백틱(``)임
-
       </script> 
+
+      <script>
+        $.get('https://codingapple1.github.io/hello.txt')
+        .done(function(data) {
+          console.log(data);
+        })
+        .fail(function() {
+           console.log('실패함');
+        })
+
+
+        $.get('https://codingapple1.github.io/price.json')
+        .done(function(data) {
+          console.log(data.price);
+        })
+
+
+        fetch
+        //$.post('https://codingapple1.github.io/hello.txt', {name:'kim'})
+
+
+      </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
