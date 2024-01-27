@@ -25,16 +25,27 @@
     </div> 
 
     <script>
-
-      function itemCardOne(className, data) {
-        var html = `<div class="col-sm-4"> 
+      function itemCardList(className, items) {
+        items.forEach((item)=>{
+          var html = `<div class="col-sm-4"> 
           <img src="https://via.placeholder.com/600" class="w-100">
-          <h5>${data.title}</h5>
-          <p>가격 : ${data.price}</p>
+          <h5>${item.title}</h5>
+          <p>가격 : ${item.price}</p>
         </div>`;
         
         $(`.${className}`).append(html);
+        }) 
       }
+
+      // function itemCardOne(className, data) {
+      //   var html = `<div class="col-sm-4"> 
+      //     <img src="https://via.placeholder.com/600" class="w-100">
+      //     <h5>${data.title}</h5>
+      //     <p>가격 : ${data.price}</p>
+      //   </div>`;
+        
+      //   $(`.${className}`).append(html);
+      // }
 
       var products = [
         { id : 0, price : 70000, title : 'Blossom Dress' },
@@ -52,9 +63,11 @@
       //   $('.row').append(html);
       // })
 
-      products.forEach((data)=> {
-        itemCardOne('row', data);
-      })
+      // products.forEach((data)=> {
+      //   itemCardOne('row', data);
+      // })
+
+      itemCardList('row', products);
       
     </script>
 
@@ -69,20 +82,15 @@
         btnCount++;
         $.get(`https://codingapple1.github.io/js/more${btnCount}.json`)
         .done((data) => {
-          data.forEach((element)=> {
-            var html = `<div class="col-sm-4"> 
-            <img src="https://via.placeholder.com/600" class="w-100">
-            <h5>${element.title}</h5>
-            <p>가격 : ${element.price}</p>
-          </div>`;
-
-          $('.row').append(html);
-      })
+          itemCardList('row', data);
         })
-        // 더보기 버튼 2번 눌리면 사라지게 하기
-        if (btnCount >= 2) $('#more').css('display', 'none');
-      
+        
+      // 더보기 버튼 2번 눌리면 사라지게 하기
+      if (btnCount >= 2) $('#more').css('display', 'none');
       })
+        
+      
+    
 
       
 
