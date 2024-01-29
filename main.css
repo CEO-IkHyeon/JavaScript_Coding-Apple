@@ -91,3 +91,21 @@
 .above-100px {
     font-size: 20px;
 }
+
+.grey {
+    background: lightgray;
+    height: 2000px;
+    margin-top: 500px;
+}
+
+.image {
+    float: right;
+    width: 400px;
+    position:sticky;
+    top:100px;
+}
+
+.text {
+    float: left;
+    width: 300px;
+}
