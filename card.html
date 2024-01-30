@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="main.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <div class="card-background">
+        <div class="card-box">
+            <img src="card1.png">
+        </div>
+
+        <div class="card-box">
+            <img src="card2.png">
+
+        </div>
+
+        <div class="card-box">
+            <img src="card3.png">
+
+        </div>
+
+    </div>
+
+    <script>
+        // 스크롤 될 때마다 이 function 실행해주세요
+        $(window).scroll(function() {
+            var height = $(window).scrollTop();
+            console.log(height);
+
+            /* 뒤에 카드 점점 사라지게 하기*/
+            // opacity 1 : 650
+            // opacity 0 : 800
+            // y = a * height + b
+            // 1 = a * 650 + b
+            // 0 = a * 800 + b
+            var opacity = (-1/150) * height + 800/150;
+            $('.card-box').eq(0).css('opacity', opacity);
+
+            /* 뒤에 카드 점점 작아지게 하기*/
+            var scale = (-1/750) * height + 28/15;
+            if (height >= 650) {
+                $('.card-box').eq(0).css('transform', `scale(${scale})`);
+            }
+        })
+    </script>
+</body>
+</html>
