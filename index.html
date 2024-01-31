@@ -190,6 +190,94 @@
     <button class="next">다음</button>
     <button class="before">이전</button>
 
+    <script>
+        var start, move = 0;
+        var isMousedown = false;
+        //mousedown, mouseup, mousemove 이벤트
+        // 1. 마우스 누를 때: mousedown
+        // 2. 마우스 누른 거에서 뗄 때: mouseup
+        $('.slide-box').eq(0).on('mousedown', function(e) {
+            start = e.clientX;
+            isMousedown = true;
+
+        })
+
+        // 3. mousemove: 해당 요소에서 마우스가 움직일 때
+        $('.slide-box').eq(0).on('mousemove', function(e) {
+            //console.log(e.clientX); // 현재 마우스 위치 x 좌표 clientY는 y축 좌표
+             // 마우스 찍고 왼쪽으로 움직이면 음수, 오른쪽으로 움직이면 양수
+            
+            if (isMousedown) {
+                $('.slide-container').css('transform', `translateX(${e.clientX - start}px)`);
+            }
+        })
+
+        $('.slide-box').eq(0).on('mouseup', function(e) {
+            isMousedown = false;
+
+            if (e.clientX - start <= -100) {
+                $('.slide-container')
+                .css('transition', 'all 0.5s')
+                .css('transform', 'translateX(-100vw)')
+
+            } else {
+                $('.slide-container')
+                .css('transition', 'all 0.5s')
+                .css('transform', 'translateX(0vw)');
+
+            }
+
+            // 계속 transition 주면 반응이 느림 -> 그렇다고 이렇게 바로 transition 없애면 순간이동함
+            // 몇 초 후에 삭제하면된다
+            setTimeout(() => {
+                $('.slide-container').css('transition', 'none')
+            }, 500);
+            
+
+        })
+
+
+        $('.slide-box').eq(0).on('touchstart', function(e) {
+            start = e.touches[0].clientX;
+            isMousedown = true;
+
+        })
+
+        // 3. mousemove: 해당 요소에서 마우스가 움직일 때
+        $('.slide-box').eq(0).on('touchmove', function(e) {
+            //console.log(e.clientX); // 현재 마우스 위치 x 좌표 clientY는 y축 좌표
+             // 마우스 찍고 왼쪽으로 움직이면 음수, 오른쪽으로 움직이면 양수
+            
+            if (isMousedown) {
+                $('.slide-container').css('transform', `translateX(${e.touches[0].clientX - start}px)`);
+            }
+        })
+
+        $('.slide-box').eq(0).on('touchend', function(e) {
+            isMousedown = false;
+
+            if (e.changedTouches[0].clientX - start <= -100) {
+                $('.slide-container')
+                .css('transition', 'all 0.5s')
+                .css('transform', 'translateX(-100vw)')
+
+            } else {
+                $('.slide-container')
+                .css('transition', 'all 0.5s')
+                .css('transform', 'translateX(0vw)');
+
+            }
+
+            // 계속 transition 주면 반응이 느림 -> 그렇다고 이렇게 바로 transition 없애면 순간이동함
+            // 몇 초 후에 삭제하면된다
+            setTimeout(() => {
+                $('.slide-container').css('transition', 'none')
+            }, 500);
+
+        })
+
+        // Hammer.js 쓰면 터치와 클릭을 하나의 이벤트 리스너로 커버 가능
+    </script>
 
     
     <script>
